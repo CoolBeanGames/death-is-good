@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DevCommandCatalog" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://addons/dev_toolkit/command_catalog.gd" id="1"]
+[ext_resource type="Script" path="res://addons/dev_toolkit/command.gd" id="2"]
+[ext_resource type="Resource" path="res://addons/dev_toolkit/commands/help.tres" id="3"]
+[ext_resource type="Resource" path="res://addons/dev_toolkit/commands/echo.tres" id="4"]
+[ext_resource type="Resource" path="res://addons/dev_toolkit/commands/log.tres" id="5"]
+[ext_resource type="Resource" path="res://addons/dev_toolkit/commands/record.tres" id="6"]
+
+[resource]
+script = ExtResource("1")
+commands = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])

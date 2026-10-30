@@ -1,38 +1,83 @@
-[gd_scene format=3 uid="uid://biiu0l41ju2ki"]
+[gd_scene format=4 uid="uid://biiu0l41ju2ki"]
 
 [ext_resource type="PackedScene" uid="uid://cmkrbhyipjgao" path="res://player/character.tscn" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://bmkme6ld8pi6w" path="res://sprites/kenny/Large (2×)/block.png" id="2_qxrlw"]
+[ext_resource type="TileSet" uid="uid://k3bjm6lgvhp7" path="res://tile_set.tres" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://c5qky42inla1u" path="res://death_handler.gd" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://bu3wdys5dbmyb" path="res://death_zone.gd" id="4_3dryh"]
+[ext_resource type="FontFile" uid="uid://bcw5avo6vkvme" path="res://UI/Matcha World.otf" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://chatkl7scnkp1" path="res://sprites/kenny/Tiles (White)/tile_0085.png" id="6_1l0tm"]
+[ext_resource type="Script" uid="uid://dqumg2npsmmie" path="res://death_counter.gd" id="6_v158k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig4qq"]
-size = Vector2(1154, 122)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
-size = Vector2(122, 122)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owqr0"]
+size = Vector2(769, 149)
 
 [node name="Game" type="Node2D" unique_id=551626487]
 
-[node name="character" parent="." unique_id=1668587037 instance=ExtResource("1_ebmjs")]
-position = Vector2(514, 325)
+[node name="spawn" type="Node2D" parent="." unique_id=556026899]
+position = Vector2(150, 96)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1446465832]
-position = Vector2(519, 488)
+[node name="Death Handler" type="Node" parent="." unique_id=1839325685 node_paths=PackedStringArray("spawn_point", "camera")]
+script = ExtResource("3_wrm1d")
+spawn_point = NodePath("../spawn")
+prefab = ExtResource("1_ebmjs")
+camera = NodePath("../Camera2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=785399066]
-scale = Vector2(10.080001, 1)
-texture = ExtResource("2_qxrlw")
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1916055888]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1262491161]
-position = Vector2(56, 1)
-shape = SubResource("RectangleShape2D_ig4qq")
+[node name="foreground" type="TileMapLayer" parent="." unique_id=762857982]
+tile_map_data = PackedByteArray("AAAAAAQAAQAAAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAPAAQAAQAAAAAAAAAQAAQAAQAAAAAAAAARAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAUAAQAAAAAAAAACAAUAAQAAAAAAAAADAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAQAAUAAQAAAAAAAAARAAUAAQAAAAAAAAARAAYAAQAAAAAAAAAQAAYAAQAAAAAAAAAPAAYAAQAAAAAAAAAOAAYAAQAAAAAAAAANAAYAAQAAAAAAAAAMAAYAAQAAAAAAAAALAAYAAQAAAAAAAAAKAAYAAQAAAAAAAAAJAAYAAQAAAAAAAAAIAAYAAQAAAAAAAAAHAAYAAQAAAAAAAAAGAAYAAQAAAAAAAAAFAAYAAQAAAAAAAAAEAAYAAQAAAAAAAAADAAYAAQAAAAAAAAACAAYAAQAAAAAAAAABAAYAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wUAAQAAAAAAAAD//wYAAQAAAAAAAAASAAYAAQAAAAAAAAATAAYAAQAAAAAAAAAUAAYAAQAAAAAAAAAVAAYAAQAAAAAAAAAWAAYAAQAAAAAAAAASAAQAAQAGAAIAAAAUAAQAAQAFAAQAAAAXAAYAAQAAAAAAAAAYAAYAAQAAAAAAAAAZAAYAAQAAAAAAAAAaAAYAAQAAAAAAAAAbAAYAAQAAAAAAAAAZAAMAAQAAAAAAAAAaAAMAAQAAAAAAAAAbAAMAAQAAAAAAAAAcAAMAAQAAAAAAAAAXAAIAAQAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAXAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAaAAEAAQAAAAAAAAAbAAEAAQAAAAAAAAAcAAEAAQAAAAAAAAAdAAMAAQAAAAAAAAAdAAIAAQAAAAAAAAAdAAEAAQAAAAAAAAAdAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAATAAAAAQAAAAAAAAASAAAAAQAAAAAAAAASAP//AQAAAAAAAAARAP//AQAAAAAAAAARAP7/AQAAAAAAAAAQAP7/AQAAAAAAAAAQAP3/AQAAAAAAAAAPAP3/AQAAAAAAAAAPAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAARAPz/AQAAAAAAAAASAPz/AQAAAAAAAAATAPz/AQAAAAAAAAATAP3/AQAAAAAAAAAUAP3/AQAAAAAAAAAUAP7/AQAAAAAAAAAUAP//AQAAAAAAAAAVAP//AQAAAAAAAAAWAP//AQAAAAAAAAAXAP//AQAAAAAAAAAYAP//AQAAAAAAAAAZAP//AQAAAAAAAAATAP7/AQAAAAAAAAASAP7/AQAAAAAAAAARAP3/AQAAAAAAAAASAP3/AQAAAAAAAAATAP//AQAAAAAAAAAVAP7/AQAAAAAAAAAWAP7/AQAAAAAAAAAXAP7/AQAAAAAAAAAYAP7/AQAAAAAAAAAZAP7/AQAAAAAAAAAaAP7/AQAAAAAAAAAbAP//AQAAAAAAAAAcAP//AQAAAAAAAAAdAP//AQAAAAAAAAAaAP//AQAAAAAAAAAbAP7/AQAAAAAAAAAcAP7/AQAAAAAAAAAdAP7/AQAAAAAAAAAYAP3/AQAAAAAAAAAXAP3/AQAAAAAAAAAWAP3/AQAAAAAAAAAVAP3/AQAAAAAAAAAUAPz/AQAAAAAAAAAVAPz/AQAAAAAAAAAWAPz/AQAAAAAAAAAXAPz/AQAAAAAAAAAYAPz/AQAAAAAAAAAZAPz/AQAAAAAAAAAZAP3/AQAAAAAAAAAaAP3/AQAAAAAAAAAbAP3/AQAAAAAAAAAcAP3/AQAAAAAAAAAdAP3/AQAAAAAAAAAcAAYAAQAAAAAAAAAdAAYAAQAAAAAAAAASAAUAAQALAAMAAAATAAUAAQALAAMAAAAUAAUAAQALAAMAAAAVAAUAAQALAAMAAAAWAAUAAQALAAMAAAAYAAUAAQAAAAAAAAAZAAUAAQAAAAAAAAAaAAUAAQAAAAAAAAAbAAUAAQAAAAAAAAAcAAUAAQAAAAAAAAAdAAUAAQAAAAAAAAAXAAUAAQALAAMAAAA=")
+tile_set = ExtResource("3_3dryh")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1142735800]
-position = Vector2(1430, 378)
+[node name="first_death_zone" type="Area2D" parent="." unique_id=742424627]
+position = Vector2(2674, 694)
+script = ExtResource("4_3dryh")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=1454156310]
-position = Vector2(-582.06, 0)
-scale = Vector2(0.98531294, 1)
-texture = ExtResource("2_qxrlw")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first_death_zone" unique_id=619960289]
+position = Vector2(9.5, 9.5)
+shape = SubResource("RectangleShape2D_owqr0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2056981430]
-position = Vector2(-586, 1)
-shape = SubResource("RectangleShape2D_qxrlw")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=324630775]
+
+[node name="Death_counter" type="Label" parent="CanvasLayer" unique_id=1615626306]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = 43.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 14
+theme_override_fonts/font = ExtResource("5_i6g32")
+theme_override_font_sizes/font_size = 32
+text = "Deaths:0"
+horizontal_alignment = 2
+script = ExtResource("6_v158k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=610134386]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 300.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=524719563]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_1l0tm")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1960685408]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_i6g32")
+theme_override_font_sizes/font_size = 32
+text = "-Sewer Slide"
+
+[connection signal="body_entered" from="first_death_zone" to="first_death_zone" method="_on_body_entered"]
